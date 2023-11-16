@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Authentication</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="path/to/your/stylesheet.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .alert {
+            width: 60%;
+            margin-bottom: 20px;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            color: #a94442;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #ffffff;
+            font-size: 1em;
+            margin: 0;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <center>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <br>
+        <img src="https://vidyanidhi.com/images/logo@2x.png" alt="CDAC Logo" width="200" height="100">
+        <h1>Welcome to DBDA SMVITA</h1>
+        <br><br>
+
+        {% if user.is_authenticated %}
+        <h3>Hello {{ fname }} {{ lname }}</h3>
+        <h4>You're successfully logged in.</h4>
+        <button type="submit"><a href="/signout"><h4>Sign Out</h4></a></button>
+
+        {% else %}
+        <h2>Create a new student account</h2>
+        <br><br>
+        <h3>It's quick and easy</h3>
+        <button type="submit"><a href="/signup"><h4>Sign Up</h4></a></button>
+        <br><br>
+        <h3>Already have an account?</h3>
+        <br><br>
+        <button type="submit"><a href="/signin"><h4>Sign In</h4></a></button>
+        {% endif %}
+    </center>
+
+    <script src="" async defer></script>
+</body>
+
+</html>
